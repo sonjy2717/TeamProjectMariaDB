@@ -38,7 +38,7 @@ public class BoardDAO extends JDBConnect{
 	
 	public int selectCount2(Map<String, Object> map, String tname) {
 		int totalCount = 0;
-		String query =  "SELECT COUNT(*) FROM board WHERE tname ="+tname+"";
+		String query =  "SELECT COUNT(*) FROM board WHERE tname ='" + tname + "'";
 		if (map.get("searchWord") != null) {
             query += " AND " + map.get("searchField") + " "
                    + " LIKE '%" + map.get("searchWord") + "%'";
@@ -183,11 +183,11 @@ public class BoardDAO extends JDBConnect{
 		
 		List<BoardDTO> board = new Vector<BoardDTO>();
 		
-		String query = "SELECT * FROM ( SELECT * FROM board ";
+		String query = "SELECT * FROM ";
 		if(map.get("searchWord") != null) {
-			query+=" WHERE " + map.get("searchField") + " LIKE '%" + map.get("searchWord") + "%'";
+			query+=" ( SELECT * FROM board WHERE " + map.get("searchField") + " LIKE '%" + map.get("searchWord") + "%' )";
 		}
-		query+=" ) board WHERE tname="+ tname +" ORDER BY idx DESC LIMIT ?, ?";
+		query+=" board WHERE tname='"+ tname +"' ORDER BY idx DESC LIMIT ?, ?";
 		
 		try {
             psmt = con.prepareStatement(query);

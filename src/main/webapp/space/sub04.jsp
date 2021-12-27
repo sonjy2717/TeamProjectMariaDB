@@ -16,7 +16,7 @@
  }
 </style>
 <%
-String tname = "사진";
+String tname = "photo";
 BoardDTO dto2 = new BoardDTO();
 
 dto2.setTname(tname);
@@ -58,8 +58,8 @@ if(pageTemp != null && !pageTemp.equals(""))
 	pageNum = Integer.parseInt(pageTemp);
 
 //게시물의 구간을 계산한다.
-int start = (pageNum - 1) * pageSize + 1; //구간의 시작
-int end = pageNum * pageSize;//구간의 끝
+int start = (pageNum - 1) * pageSize;
+int end = pageSize;
 
 param.put("start", start); //Map컬렉션에 저장 후 DAO로전달함
 param.put("end", end);

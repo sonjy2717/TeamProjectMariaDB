@@ -16,7 +16,7 @@
         *{font-size: 12px;}
     </style>
 <%
-String tname = "정보";
+String tname = "info";
 BoardDTO dto2 = new BoardDTO();
 
 dto2.setTname(tname);
@@ -58,8 +58,8 @@ if(pageTemp != null && !pageTemp.equals(""))
 	pageNum = Integer.parseInt(pageTemp);
 
 //게시물의 구간을 계산한다.
-int start = (pageNum - 1) * pageSize + 1; //구간의 시작
-int end = pageNum * pageSize;//구간의 끝
+int start = (pageNum - 1) * pageSize;
+int end = pageSize;
 
 param.put("start", start); //Map컬렉션에 저장 후 DAO로전달함
 param.put("end", end);
@@ -119,7 +119,7 @@ dao.close();
 	<thead>
 	<tr class="success">
 		<th class="text-center">번호</th>
-		<th class="text-left"><a href="sub01_view.jsp">제목</a></th>
+		<th class="text-left">제목</th>
 		<th class="text-center">작성자</th>
 		<th class="text-center">작성일</th>
 		<th class="text-center">조회수</th>
@@ -129,15 +129,6 @@ dao.close();
 	
 	<tbody>
 	<!-- 리스트반복 -->
-	
-	<tr>
-		<td class="text-center">번호</td>
-		<td class="text-left"><a href="sub01_view.jsp">제목</a></td>
-		<td class="text-center">작성자</td>
-		<td class="text-center">작성일</td>
-		<td class="text-center">조회수</td>
-		<td class="text-center">첨부</td>
-	</tr>
 		<%
 			if(boardLists.isEmpty()){
 		%>

@@ -16,7 +16,7 @@
         *{font-size: 12px;}
     </style>
 <%
-String tname = "공지";
+String tname = "notice";
 BoardDTO dto2 = new BoardDTO();
 
 dto2.setTname(tname);
@@ -118,7 +118,7 @@ dao.close();
 	<thead>
 	<tr class="success">
 		<th class="text-center">번호</th>
-		<th class="text-left"><a href="sub01_view.jsp">제목</a></th>
+		<th class="text-left">제목</th>
 		<th class="text-center">작성자</th>
 		<th class="text-center">작성일</th>
 		<th class="text-center">조회수</th>
@@ -128,15 +128,6 @@ dao.close();
 	
 	<tbody>
 	<!-- 리스트반복 -->
-	
-	<tr>
-		<td class="text-center">번호</td>
-		<td class="text-left"><a href="sub01_view.jsp">제목</a></td>
-		<td class="text-center">작성자</td>
-		<td class="text-center">작성일</td>
-		<td class="text-center">조회수</td>
-		<td class="text-center">첨부</td>
-	</tr>
 		<%
 			if(boardLists.isEmpty()){
 		%>

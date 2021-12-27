@@ -46,7 +46,7 @@
 </style>
 <body>
 <%
-String tname = "일정";
+String tname = "schedule";
 BoardDTO dto2 = new BoardDTO();
 BoardDAO dao = new BoardDAO(application);
 String idx = request.getParameter("idx");
