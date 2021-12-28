@@ -18,12 +18,14 @@ function edit(idx) {
 	}
 	
 	form.method = "post";
-	form.action = "../market/edit.do?";
+	form.action = "../market/edit.do";
 	form.submit();
 }
 
 function deleteList() {
-	
+	frm.method = "post";
+	frm.action = "../market/delete.do";
+	frm.submit();
 }
 </script>
 
@@ -45,6 +47,7 @@ function deleteList() {
 					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;열린장터&nbsp;>&nbsp;수아밀 제품 주문<p>
 				</div>
 				<form name="frm">
+				<input type="hid den" name="basket_product" value="" />
 				<input type="hidden" name="basket_idx" value="" />
 				<input type="hidden" name="basket_count" value="" />
 				<table cellpadding="0" cellspacing="0" border="0" class="basket_list">
@@ -85,7 +88,7 @@ function deleteList() {
 						<c:forEach items="${ list }" var="row" varStatus="loop">
 						<tr align="center">
 							<td>
-								<input type="checkbox" name="cake" value="" />
+								<input type="checkbox" name="product" value="${ row.idx }" />
 							</td>
 							<td>
 								<img src="../images/market/${ row.img }" width="50px"/>
@@ -106,8 +109,8 @@ function deleteList() {
 					</c:choose>
 					</tbody>
 				</table>
-				</form>
 				<button style="margin-top: 10px;" type="button" align="left" onclick="deleteList();">선택삭제</button>
+				</form>
 				<p class="basket_text">
 					합계 : ${ total }<span class="money"></span>
 					<br /><br />

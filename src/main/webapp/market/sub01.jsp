@@ -95,9 +95,8 @@ function basket(idx, price) {
 				</c:otherwise>
 			</c:choose>
 				</table>
-				<img src="../images/market/btn02.gif" onclick="basket('${ idx }', '${ price }');" 
-					style="margin-top: 30px;" align="right"/>
 				</form>
+				<button type="button" onclick="basket();" style="margin-top: 20px;">내 장바구니</button>
 				<br />
 				<div align="center" style="margin-top: 20px; font-size: 12pt;">
 					${ map.pagingImg }

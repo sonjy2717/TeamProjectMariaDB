@@ -33,7 +33,6 @@ public class EditController extends HttpServlet {
 		dto.setCount(count);
 		
 		int affted = dao.editBasket(count, idx, id);
-		
 		if (affted >= 1) {
 			System.out.println("업데이트 성공");
 		}

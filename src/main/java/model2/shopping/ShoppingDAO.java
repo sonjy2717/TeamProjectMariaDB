@@ -200,6 +200,7 @@ public class ShoppingDAO extends DBConnPool {
 		return result;
 	}
 	
+	//장바구니 수량 수정
 	public int editBasket(String count, String idx, String id) {
 		int result = 0;
 		String query1 = "UPDATE basket SET count=? WHERE idx=? AND id=?";
@@ -226,6 +227,7 @@ public class ShoppingDAO extends DBConnPool {
 		return result;
 	}
 	
+	//장바구니 합계 금액 구하기
 	public int basketTotal(String id) {
 		int result = 0;
 		
@@ -246,5 +248,20 @@ public class ShoppingDAO extends DBConnPool {
 		}
 		
 		return result;
+	}
+	
+	//장바구니 항목 삭제
+	public void deleteList(String idx) {
+		String query = "DELETE FROM basket WHERE idx=?";
+		
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, idx);
+			psmt.executeUpdate();
+		}
+		catch (Exception e) {
+			System.out.println("장바구니 삭제 중 예외 발생");
+			e.printStackTrace();
+		}
 	}
 }
