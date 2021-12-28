@@ -15,13 +15,13 @@ String id = request.getParameter("id");
 String name = request.getParameter("name1");
 String email = request.getParameter("email1");
 
-String oracleDriver = application.getInitParameter("OracleDriver");
-String oracleURL = application.getInitParameter("OracleURL");
-String oracleId = application.getInitParameter("OracleId");
-String oraclePwd = application.getInitParameter("OraclePwd");
+String mariaDBDriver = application.getInitParameter("MariaDBDriver");
+String mariaDBURL = application.getInitParameter("MariaDBURL");
+String mariaDBId = application.getInitParameter("MariaDBId");
+String mariaDBPwd = application.getInitParameter("MariaDBPwd");
 
 MemberDTO memberDTO = null;
-MemberDAO dao = new MemberDAO(oracleDriver, oracleURL, oracleId, oraclePwd);
+MemberDAO dao = new MemberDAO(mariaDBDriver, mariaDBURL, mariaDBId, mariaDBPwd);
 
 if(id==null){ //아이디 찾기	
 	memberDTO = dao.getMemberInfo("", name, email);
