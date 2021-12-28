@@ -20,9 +20,9 @@ public class JDBConnect {
 			//오라클 드라이버를 로드
 			Class.forName("org.mariadb.jdbc.Driver");
 			//커넥션 URL 생성
-			String url = "jdbc:mariadb://127.0.0.1:3306/sonjy2717";
-			String id = "sonjy2717";  //id
-			String pwd = "justcoding6"; //패스워드
+			String url = "jdbc:mariadb://127.0.0.1:3306/justcoding_db";
+			String id = "justcoding_user";  //id
+			String pwd = "1234"; //패스워드
 			con = DriverManager.getConnection(url, id,pwd);
 			
 			System.out.println("DB연결 성공(기본 생성자)");

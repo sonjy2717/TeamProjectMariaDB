@@ -95,6 +95,8 @@ function basket(idx, price) {
 				</c:otherwise>
 			</c:choose>
 				</table>
+				<img src="../images/market/btn02.gif" onclick="basket('${ idx }', '${ price }');" 
+					style="margin-top: 30px;" align="right"/>
 				</form>
 				<br />
 				<div align="center" style="margin-top: 20px; font-size: 12pt;">
