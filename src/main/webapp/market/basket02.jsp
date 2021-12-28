@@ -1,8 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ include file="../include/global_head.jsp" %>
+<%@ include file="../util/IsLoggedIn.jsp" %>
 
-
+<script>
+function edit(idx) {
+	var form = document.frm;
+	var choice_count = document.getElementById("count_"+idx).value;
+	
+	form.basket_idx.value = idx;
+	form.basket_count.value = choice_count;
+	
+	if (choice_count <= 0) {
+		alert("수량은 0개 이하로 설정할 수 없습니다.");
+		return;
+	}
+	
+	form.method = "post";
+	form.action = "../market/buy.do";
+	form.submit();
+}
+</script>
  <body>
 	<center>
 	<div id="wrap">
@@ -21,6 +40,9 @@
 					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;열린장터&nbsp;>&nbsp;수아밀 제품 주문<p>
 				</div>
 				<p class="con_tit"><img src="../images/market/basket_title01.gif" /></p>
+				<form name="frm">
+				<input type="hidden" name="basket_idx" value="" />
+				<input type="hidden" name="basket_count" value="" />
 				<table cellpadding="0" cellspacing="0" border="0" class="basket_list" style="margin-bottom:50px;">
 					<colgroup>
 						<col width="7%" />
@@ -47,31 +69,39 @@
 						</tr>
 					</thead>
 					<tbody>
+					<c:choose>
+					<c:when test="${ empty list }">
 						<tr>
-							<td><input type="checkbox" name="" value="" /></td>
-							<td><img src="../images/market/cake_img1.jpg" /></td>
-							<td>녹차 쌀 무스케잌</td>
-							<td>30,000원</td>
-							<td><img src="../images/market/j_icon.gif" />&nbsp;300원</td>
-							<td><input type="text" name="" value="2" class="basket_num" />&nbsp;<a href=""><img src="../images/market/m_btn.gif" /></a></td>
-							<td>무료배송</td>
-							<td>[조건]</td>
-							<td><span>60,000원<span></td>
+							<td colspan="9" align="center">
+								장바구니가 비었습니다.
+							</td>
 						</tr>
-						<tr>
-							<td><input type="checkbox" name="" value="" /></td>
-							<td><img src="../images/market/cake_img1.jpg" /></td>
-							<td>녹차 쌀 무스케잌</td>
-							<td>30,000원</td>
-							<td><img src="../images/market/j_icon.gif" />&nbsp;300원</td>
-							<td><input type="text" name="" value="2" class="basket_num" />&nbsp;<a href=""><img src="../images/market/m_btn.gif" /></a></td>
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${ list }" var="row" varStatus="loop">
+						<tr align="center">
+							<td><input type="checkbox" name="product" value="${ row.idx }" /></td>
+							<td><img src="../images/market/${ row.img }" width="50px"/></td>
+							<td>${ row.name }</td>
+							<td>${ row.price }원</td>
+							<td><img src="../images/market/j_icon.gif" />${ row.point }원</td>
+							<td>
+								<input type="number" id="count_${ row.idx }" value="${ row.count }" class="basket_num" style="width: 40px;"/>&nbsp;
+								<img src="../images/market/m_btn.gif" onclick="edit('${ row.idx }');" />
+							</td>
 							<td>무료배송</td>
-							<td>[조건]</td>
-							<td><span>60,000원<span></td>
+							<td>[무료]</td>
+							<td><span>${ row.total }</span></td>
 						</tr>
+						</c:forEach>
+					</c:otherwise>
+					</c:choose>
 					</tbody>
 				</table>
-
+				<p class="basket_text">
+					합계 : ${ total }<span class="money"></span>
+				</p>
+				</form>
 				<p class="con_tit"><img src="../images/market/basket_title02.gif" /></p>
 				<table cellpadding="0" cellspacing="0" border="0" class="con_table" style="width:100%;" style="margin-bottom:50px;">
 					<colgroup>

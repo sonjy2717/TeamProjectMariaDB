@@ -23,8 +23,35 @@ function edit(idx) {
 }
 
 function deleteList() {
+	var check = new Array();
+	check = document.getElementsByName("product");
+	
+	if (check.length == 0) {
+		alert("장바구니가 비어있습니다.");
+		return;
+	}
+	
 	frm.method = "post";
 	frm.action = "../market/delete.do";
+	frm.submit();
+}
+
+function buy() {
+	var check = new Array();
+	check = document.getElementsByName("product");
+	
+	if (check.length == 0) {
+		alert("장바구니가 비어있습니다.");
+		return;
+	}
+	else {
+		for (var i = 0; i < check.length; i++) {
+			check[i].checked = true;
+		}
+	}
+	
+	frm.method = "post";
+	frm.action = "../market/buy.do";
 	frm.submit();
 }
 </script>
@@ -46,8 +73,7 @@ function deleteList() {
 					<img src="../images/market/sub01_title.gif" alt="수아밀 제품 주문" class="con_title" />
 					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;열린장터&nbsp;>&nbsp;수아밀 제품 주문<p>
 				</div>
-				<form name="frm">
-				<input type="hid den" name="basket_product" value="" />
+				<form name="frm" method="post">
 				<input type="hidden" name="basket_idx" value="" />
 				<input type="hidden" name="basket_count" value="" />
 				<table cellpadding="0" cellspacing="0" border="0" class="basket_list">
@@ -110,13 +136,13 @@ function deleteList() {
 					</tbody>
 				</table>
 				<button style="margin-top: 10px;" type="button" align="left" onclick="deleteList();">선택삭제</button>
-				</form>
 				<p class="basket_text">
 					합계 : ${ total }<span class="money"></span>
 					<br /><br />
 					<a href="../market/list.do"><img src="../images/market/basket_btn01.gif" /></a>&nbsp;
-					<a href="../market/buy.do"><img src="../images/market/basket_btn02.gif" /></a>
+					<img src="../images/market/basket_btn02.gif" onclick="buy();" />
 				</p>
+				</form>
 			</div>
 		</div>
 		<%@ include file="../include/quick.jsp" %>

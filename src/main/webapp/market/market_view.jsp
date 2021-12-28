@@ -18,19 +18,20 @@ function basket() {
 	form.action = "../market/basket.do";
 	form.submit();
 }
-/* function buy() {
+function buy() {
 	var form = document.frm;
 	
 	if (form.count.value <= 0) {
 		alert("수량은 0개 이하로 설정할 수 없습니다.");
 		form.count.focus();
+		form.count.value = '1';
 		return;
 	}
 	
 	form.method = "post";
 	form.action = "../market/buy.do";
 	form.submit();
-} */
+}
 </script>
 
  <body>

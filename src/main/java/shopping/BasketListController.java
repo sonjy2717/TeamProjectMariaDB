@@ -61,9 +61,10 @@ public class BasketListController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		HttpSession session = req.getSession();
 		ShoppingDAO dao = new ShoppingDAO();
 		
-		String id = req.getParameter("id");
+		String id = (String)session.getAttribute("user_id");
 		
 		List<BasketDTO> list = dao.showBasketList(id);
 		

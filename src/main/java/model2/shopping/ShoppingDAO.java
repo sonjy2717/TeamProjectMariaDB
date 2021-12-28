@@ -27,6 +27,7 @@ public class ShoppingDAO extends DBConnPool {
 		return totalCount;
 	}
 	
+	//상품 리스트 페이지 처리
 	public List<ManagementDTO> selectListPage(Map<String, Object> map) {
 		List<ManagementDTO> board = new Vector<ManagementDTO>();
 		
@@ -263,5 +264,40 @@ public class ShoppingDAO extends DBConnPool {
 			System.out.println("장바구니 삭제 중 예외 발생");
 			e.printStackTrace();
 		}
+	}
+	
+	//구매목록 가져오기
+	public List<BasketDTO> buyList(String id) {
+		List<BasketDTO> list = new Vector<BasketDTO>();
+		String query = "SELECT img, NAME, M.price, point, count, total, M.idx "
+				+ " FROM management M INNER JOIN basket B " 
+				+ " ON M.idx = B.idx " 
+				+ " WHERE id=?";
+		
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, id);
+			rs = psmt.executeQuery();
+			
+			while (rs.next()) {
+				BasketDTO dto = new BasketDTO(); //DTO 객체 생성
+				
+				dto.setImg(rs.getString(1));
+				dto.setName(rs.getString(2));
+				dto.setPrice(rs.getString(3));
+				dto.setPoint(rs.getString(4));
+				dto.setCount(rs.getString(5));
+				dto.setTotal(rs.getString(6));
+				dto.setIdx(rs.getString(7));
+				
+				list.add(dto);
+			}
+		}
+		catch (Exception e) {
+			System.out.println("구매목록을 가져오는 중 예외 발생");
+			e.printStackTrace();
+		}
+		
+		return list;
 	}
 }

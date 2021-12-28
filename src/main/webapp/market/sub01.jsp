@@ -15,7 +15,7 @@ function basket(idx, price) {
 	form.action = "../market/basket.do";
 	form.submit();
 }
-/* function buy(idx, price) {
+function buy(idx, price) {
 	var form = document.frm;
 	
 	form.idx.value = idx;
@@ -23,7 +23,7 @@ function basket(idx, price) {
 	form.method = "post";
 	form.action = "../market/buy.do";
 	form.submit();
-} */
+}
 </script>
 
  <body>
