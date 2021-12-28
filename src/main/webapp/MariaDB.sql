@@ -29,6 +29,9 @@ CREATE TABLE member (
     detailadd VARCHAR(100) NOT NULL,
     regidate DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
+#어드민 계정 추가
+INSERT INTO member (NAME, id, pass, phone_num, email, postcode, basicadd, detailadd) 
+	VALUES ('관리자', 'admin', '1234', '010-2700-1733', 'sonjy2717@naver.com', 61085, '금천구', '독산동');
 
 #외래키 설정
 ALTER TABLE board ADD constraint fk_board_member
