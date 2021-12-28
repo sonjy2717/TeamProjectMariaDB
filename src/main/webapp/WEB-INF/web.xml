@@ -48,15 +48,15 @@
   </context-param>
   <context-param>
   	<param-name>MariaDBURL</param-name>
-  	<param-value>jdbc:mariadb://127.0.0.1:3306/justcoding_db</param-value>
+  	<param-value>jdbc:mariadb://127.0.0.1:3306/sonjy2717</param-value>
   </context-param>
   <context-param>
   	<param-name>MariaDBId</param-name>
-  	<param-value>justcoding_user</param-value>
+  	<param-value>sonjy2717</param-value>
   </context-param>
   <context-param>
   	<param-name>MariaDBPwd</param-name>
-  	<param-value>1234</param-value>
+  	<param-value>justcoding6</param-value>
   </context-param>
   
  <!-- 세션 유지시간 설정: 분 단위로 설정한다. -->
