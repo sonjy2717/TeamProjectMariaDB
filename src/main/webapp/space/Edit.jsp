@@ -110,7 +110,7 @@ function validateForm(form){
 		</td>
 	</tr>
 	<%
-		if(tname.equals("정보")|| tname.equals("사진")){
+		if(tname.equals("info")|| tname.equals("photo")){
 		%>
 		<tr>
 		<th class="text-center" 

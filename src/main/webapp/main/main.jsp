@@ -87,15 +87,25 @@
 					 }
 					 else{
 					%>
+					
 					<!-- 로그인 후 -->
 					<p style="padding:10px 0px 10px 10px"><span style="font-weight:bold; color:#333;"><%= dto.getName() %>님,</span> 반갑습니다.<br />로그인 하셨습니다.</p>
 					<p style="text-align:right; padding-right:10px;">
 						<input type="image" onclick="location.href='../member/modify.jsp';" src="../images/login_btn04.gif" />
 						<a href="../member/Logout.jsp"><img src="../images/login_btn05.gif" /></a>
 					</p>
+					<div>
+					<%
+            				if(session.getAttribute("user_id") != null && session.getAttribute("user_id").toString().equals("admin")){
+            		%> 
+					<button type="button" class="btn btn-info"  onclick="location.href='../adminpage/index.jsp';" style="margin:10px">관리 페이지</button>
+					<%
+        			}
+					%></div>
 					<% 
 			 		}
 			 		%>
+			 		<br/>
 				</div>
 			</div>
 			<div class="main_con_center">

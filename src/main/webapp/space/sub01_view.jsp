@@ -123,7 +123,7 @@ function deletePost(){
 				style="vertical-align:middle;">첨부파일</th>
 			<td colspan="3">
 				<%
-				if(dto.getOfile() != null){
+				if(dto.getOfile() != null && dto.getSfile()!=null){
 				%>
 				<a href="Download.jsp?oName=<%=URLEncoder.encode(dto.getOfile(),"UTF-8")%>&sName=<%=URLEncoder.encode(dto.getSfile(),"UTF-8")%>">[다운로드]</a>
 				<br/><br/>
@@ -142,9 +142,12 @@ function deletePost(){
 			 <%
             if(session.getAttribute("user_id") != null
             && session.getAttribute("user_id").toString().equals(dto.getId())){
-            %>   
-			<button type="button" class="btn btn-primary btn-sm" onclick="location.href='Edit.jsp?idx=<%=dto.getIdx()%>&tname=<%=tname%>';">수정하기</button>
-			<button type="button" class="btn btn-success btn-sm" onclick="deletePost();">삭제하기</button>	
+            %>
+            <%if(tname.equals("photo") || tname.equals("info") ||tname.equals("free")){ %>   
+				<button type="button" class="btn btn-primary btn-sm" onclick="location.href='Edit.jsp?idx=<%=dto.getIdx()%>&tname=<%=tname%>';">수정하기</button>
+				<button type="button" class="btn btn-success btn-sm" onclick="deletePost();">삭제하기</button>	
+				<%
+			} %>
 			<%
             }
 			%>

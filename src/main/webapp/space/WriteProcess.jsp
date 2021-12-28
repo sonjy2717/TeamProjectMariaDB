@@ -56,9 +56,6 @@ try{
 			BoardDAO dao = new BoardDAO(application);
 			String tname= mr.getParameter("tname");
 			
-		
-			
-	
 			int iResult= dao.insertWrite(dto,tname);
 			//자원해제
 			dao.close();

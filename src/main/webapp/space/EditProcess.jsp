@@ -55,8 +55,10 @@ try{
 				FileUtil.deleteFile(request, "/Uploads", prevSfile);
 			}
 			else { //새롭게 등록된 파일이 없는 경우...
-				dto.setOfile(prevOfile);
-				dto.setSfile(prevSfile);
+				if(prevOfile != null && prevSfile !=null){
+					dto.setOfile(prevOfile);
+					dto.setSfile(prevSfile);
+				}
 			}
 	
 			BoardDAO dao = new BoardDAO(application);
@@ -71,8 +73,23 @@ try{
 			dao.close();
 			//dto객체를 매개변수로 전달하여 레코드 insert 처리
 			if(iResult == 1){
-				//글쓰기에 성공했다면 리스트(목록) 페이지로 이동한다.
-				response.sendRedirect("./sub01.jsp");
+				if(tname.equals("notice")){
+					response.sendRedirect("./sub01.jsp");
+				}
+				else if(tname.equals("free")){
+					response.sendRedirect("./sub03.jsp");
+				}
+				else if(tname.equals("photo")){
+					response.sendRedirect("./sub04.jsp");
+				}
+				else if(tname.equals("info")){
+					response.sendRedirect("./sub05.jsp");
+				}else if(tname.equals("schedule")){
+					response.sendRedirect("./sub02.jsp");
+				}
+				else{
+					response.sendRedirect("../main/main.jsp");
+				}
 			}else{
 				//실패한 경우에는 글쓰기 페이지로 이동한다. 즉 뒤로 이동한다.
 				JSFunction.alertBack("글쓰기에 실패하였습니다.", out);
