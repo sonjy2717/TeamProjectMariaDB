@@ -7,7 +7,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">   
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-
  <body>
 	<center>
 	<div id="wrap">
@@ -21,15 +20,20 @@
 			</div>
 			<div class="right_contents">
 				<div class="top_title">
+				<c:if test="${ dto.tname.equals('step') }">
 					<img src="../images/community/sub01_title.gif" alt="직원자료실" class="con_title" />
 					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;커뮤니티&nbsp;>&nbsp;직원자료실<p>
+				</c:if>
+				<c:if test="${ dto.tname.equals('guard') }">
+					<img src="../images/community/sub02_title.gif" alt="보호자 게시판" class="con_title" />
+					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;커뮤니티&nbsp;>&nbsp;보호자 게시판<p>
+				</c:if>
 				</div>
-			<div>
-
+			</div>
+<div class="row">
 <form name= "writeFrm" enctype="multipart/form-data">
 	<table class="table table-bordered">
 	
-	<input type="hidden" name="tname" value="step"/>
 	<colgroup>
 		<col width="15%"/>
 		<col width="30%"/>
@@ -74,9 +78,10 @@
 			<th class="text-center" 
 				style="vertical-align:middle;">첨부파일</th>
 			<td colspan="5">
-				<c:if test="${ not empty row.ofile }">
+				<c:if test="${ not empty dto.ofile }">
 					<%-- <img src="../Uploads/${ dto.sfile }" width="100" height="100"> --%>
-					<a href="../community/download.do?ofile=${ row.ofile }&sfile=${ row.sfile }&idx=${ row.idx }">[다운로드]</a>
+					<a href="../community/download.do?ofile=${ dto.ofile }&sfile=${ dto.sfile }&idx=${ dto.idx }">
+					${ dto.ofile }[다운로드]</a>
 				</c:if>
 			</td>
 		</tr>
@@ -90,15 +95,18 @@
 			<%-- <button type="button" class="btn btn-primary btn-sm" onclick="location.href='Edit.jsp?idx=<%=dto.getIdx()%>&tname=<%=tname%>';">수정하기</button> --%>
 			<!-- <button type="button" class="btn btn-success btn-sm" onclick="deletePost();">삭제하기</button> -->	
 			<button type="button" class="btn btn-danger btn-sm"
-				onclick="location.href='../community/edit.do?tname=step';">수정하기</button>
+				onclick="location.href='../community/edit.do?tname=${ dto.tname }';">수정하기</button>
 			&nbsp;
-			<button type="button" class="btn btn-primary btn-sm" 
-				onclick="location.href='../community/list.do?tname=step';">목록보기</button>
+			<%-- <button type="button" class="btn btn-primary btn-sm" 
+				onclick="location.href='../community/list.do?tname=${ dto.tname }';">목록보기</button> --%>
+				<button type="button" class="btn btn-primary btn-sm" 
+				onclick="javascript:history.back();">목록보기</button>
 		</div>
 	</div>
 	
 </form> 
 
+					</div>
 				</div>
 			</div>
 		</div>

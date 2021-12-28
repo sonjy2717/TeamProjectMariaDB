@@ -2,15 +2,19 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../include/global_head.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!-- 로그인 확인 -->
+<%@ include file="../util/IsLoggedIn.jsp" %>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">   
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 
-<head>
+<style>
+    div{border:0px solid blueviolet;}
+    *{font-size: 12px;}
+</style>
 <!-- 다운로드 아이콘 -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
- <body>
+<body>
 	<center>
 	<div id="wrap">
 		<%@ include file="../include/top.jsp" %>
@@ -19,7 +23,6 @@
 
 		<div class="contents_box">
 			<div class="left_contents">
-				
 				<%@ include file = "../include/community_leftmenu.jsp" %>
 			</div>
 			<div class="right_contents">
@@ -30,20 +33,30 @@
 			</div>
 			<!-- 검색 -->
 	        <div class="row">
-	            <form class="mt-3" method="get" action="../community/list.do?tname=step">
-	                <div class="input-group mb-3 ms-auto" style="width: 400px;">
+	            <form class="mt-3" method="get" action="../community/list.do">
+	            	<input type="hidden" name="tname" value="step" />
+	                <div class="input-group ms-auto" style="width: 400px; height:30px; margin-bottom: 20px">
 	                    <select name="searchField" class="form-control">
-	                         <option value="title">제목</option>    <!-- 여기에 value에 값이 있어야지 searchWord로 검색했을때 값들이 나온다. -->
-	                         <option value="content">내용</option>
-	                         <option value="id">작성자</option>
+	                         <option value="title" ${param.searchField == "title" ? "selected": ""}>제목</option>    <!-- 여기에 value에 값이 있어야지 searchWord로 검색했을때 값들이 나온다. -->
+	                         <option value="content" ${param.searchField == "content" ? "selected": ""}>내용</option>
+	                         <option value="id" ${param.searchField == "id" ? "selected": ""}>작성자</option>
                      	</select>
-                     	<input type="text" name="searchWord" class="form-control" placeholder="Search" style="width: 200px;">
-                     	<button class="btn btn-danger" type="submit">
+                     	<input type="text" name="searchWord" value="${param.searchWord}" class="form-control" placeholder="Search" style="width: 200px;">
+                     	<button class="btn btn-danger" type="submit" style="height:35px;">
 	                    	<i class="bi-search" style="font-size: 1rem; color: white;"></i>
 	                    </button>
                     </div>
                 </form>
             </div>
+            			<%-- 은솔씨 검색코드
+            			<!-- 검색 -->
+           				<select name="searchField" class="form-control">
+			                <option  ${request.getParameter(searchField) == "title" ? "selected": ""}   value="title">제목</option>    <!-- 여기에 value에 값이 있어야지 searchWord로 검색했을때 값들이 나온다. -->
+			                <option ${request.getParameter(searchField) == "content" ? "selected": ""}  value="content">내용</option>
+			                <option ${request.getParameter(searchField) == "id" ? "selected": ""} value="id">작성자</option>
+			            </select>
+			            <input type="text" name="searchWord" value="${request.getParameter("searchWord")}"class="form-control" placeholder="Search" style="width: 200px;">
+			             --%>
 			<!-- 게시판리스트부분 -->
 			<div class="row">
 				<table class="table table-bordered table-hover" >
@@ -104,7 +117,7 @@
 			    </table>
 				<div class="mb-3" style="padding-right:50px;">
 					<div class="col d-flex justify-content-end" style="margin-left: 650px;">
-						<button type="button" class="btn btn-danger btn-sm"
+						<button type="button" class="btn btn-danger"
 							onclick="location.href='../community/write.do?tname=step';">글쓰기</button>
 					</div>
 					<!-- 페이징 처리 -->

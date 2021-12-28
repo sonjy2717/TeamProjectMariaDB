@@ -53,7 +53,8 @@ public class WriteController extends HttpServlet {
         dto.setId(mr.getParameter("id"));
         dto.setTitle(mr.getParameter("title"));
         dto.setContent(mr.getParameter("content"));
-        String tname = req.getParameter("tname");
+        String tname = mr.getParameter("tname");
+        dto.setTname(tname);
         System.out.println("WriteController : "+ tname);
         
         
@@ -79,13 +80,15 @@ public class WriteController extends HttpServlet {
         }
         //새로운 게시물을 테이블에 저장한다. 
         MVCBoardDAO dao = new MVCBoardDAO();
-        int result = dao.insertWrite(dto, tname);
+        int result = dao.insertWrite(dto);
         //커넥션풀 자원 반납
         dao.close();
+        // request영역에 DTO객체를 저장한다.
+//        req.setAttribute("tname", tname);
 
         if (result == 1) {
         	//쓰기에 성공하면 리스트로 이동한다.
-            resp.sendRedirect("../community/list.do?tname="+ dto.getTname());
+            resp.sendRedirect("../community/list.do?tname="+ tname);
         }
         else {
         	//실패하면 쓰기페이지로 이동한다. 

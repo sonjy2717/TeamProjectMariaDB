@@ -19,12 +19,13 @@ public class ViewController extends HttpServlet {
 		
 		// 커넥션풀을 통해 DB연결
 		MVCBoardDAO dao = new MVCBoardDAO();
+		MVCBoardDTO dto = new MVCBoardDTO();
 		// 일련번호를 파라미터로 받기
 		String idx = req.getParameter("idx");
 		// 조회수 증가
 		dao.updateVisitCount(idx);
 		// 게시물 조회
-		MVCBoardDTO dto = dao.selectView(idx);
+		dto = dao.selectView(idx);
 		// 자원반납
 		dao.close();
 		
@@ -37,6 +38,6 @@ public class ViewController extends HttpServlet {
 		// request영역에 DTO객체를 저장한다.
 		req.setAttribute("dto", dto);
 		// View로 forward한다.
-		req.getRequestDispatcher("/community/sub01_view.jsp").forward(req, resp);
+		req.getRequestDispatcher("/community/View.jsp").forward(req, resp);
 	}
 }

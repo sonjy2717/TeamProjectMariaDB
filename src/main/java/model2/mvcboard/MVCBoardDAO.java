@@ -78,7 +78,7 @@ public class MVCBoardDAO extends DBConnPool {
 	
 //	[Write]
 	//새로운 게시물에 대한 입력처리
-	public int insertWrite(MVCBoardDTO dto, String tname) {
+	public int insertWrite(MVCBoardDTO dto) {
 		int result = 0;
 		
 		try {
@@ -93,7 +93,7 @@ public class MVCBoardDAO extends DBConnPool {
 			psmt.setString(3, dto.getContent());
 			psmt.setString(4, dto.getOfile());
 			psmt.setString(5, dto.getSfile());
-			psmt.setString(6, tname);
+			psmt.setString(6, dto.getTname());
 			result = psmt.executeUpdate();
 		}
 		catch (Exception e) {
@@ -105,7 +105,7 @@ public class MVCBoardDAO extends DBConnPool {
 	}
 	
 //  [View]
-	//주어진 일련번호에 해당하는 게시물을 DTO에 담아 반환한다.
+	// 해당 일련번호에 해당하는 게시물을 DTO에 담아 반환한다.
 	public MVCBoardDTO selectView(String idx) {
 		MVCBoardDTO dto = new MVCBoardDTO(); //DTO 객체 생성
 		String query = "SELECT * FROM board WHERE idx=?";
@@ -123,6 +123,7 @@ public class MVCBoardDAO extends DBConnPool {
 				dto.setOfile(rs.getString(6));
 				dto.setSfile(rs.getString(7));
 				dto.setVisitcount(rs.getString(8));
+				dto.setTname(rs.getString(9));
 			}
 		}
 		catch (Exception e) {

@@ -27,27 +27,25 @@ function validateForm(form){
 
 		<div class="contents_box">
 			<div class="left_contents">
-				<%@ include file = "../include/community_leftmenu.jsp" %>
+			<%@ include file = "../include/community_leftmenu.jsp" %>
 			</div>
 			<div class="right_contents">
 				<div class="top_title">
-				<c:choose>
-				<c:when test="${ dto.getTname().equals('step') }">  <!-- 직원자료실인경우 -->
-			        <img src="../images/community/sub01_title.gif" alt="직원자료실" class="con_title" />
+				<c:if test="${ param.tname.equals('step') }">
+					<img src="../images/community/sub01_title.gif" alt="직원자료실" class="con_title" />
 					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;커뮤니티&nbsp;>&nbsp;직원자료실<p>
-			    </c:when>
-				<c:otherwise>
+				</c:if>
+				<c:if test="${ param.tname.equals('guard') }">
 					<img src="../images/community/sub02_title.gif" alt="보호자 게시판" class="con_title" />
 					<p class="location"><img src="../images/center/house.gif" />&nbsp;&nbsp;커뮤니티&nbsp;>&nbsp;보호자 게시판<p>
-				</c:otherwise>
-				</c:choose>
+				</c:if>
 				</div>
 			</div>
 
-
+<div class="row">
 <form name="writeFrm" method="post"  enctype="multipart/form-data"
-	action="../community/write.do?tname=step" onsubmit="return validateForm(this);">
-<input type="hidden" name="tname" value="정보" />
+	action="../community/write.do" onsubmit="return validateForm(this);">
+<input type="hidden" name="tname" value="${ param.tname }" />
 <!-- 나중에 로그인한 아이디값을 받아와야 함 -->
 <input type="hidden" name="id" value="test1" >
 	<table class="table table-bordered">
@@ -58,7 +56,7 @@ function validateForm(form){
 	<tbody>
 		<tr>
 			<th class="text-center" 
-				style="vertical-align:middle;" >제목</th>
+				style="vertical-align:middle;" >제목${ tname }</th>
 			<td>
 				<input type="text" name="title" class="form-control" />
 			</td>
@@ -85,11 +83,12 @@ function validateForm(form){
 		<div class="col d-flex justify-content-end">
 		<button type="submit" class="btn btn-danger btn-sm">등록</button>&nbsp;
 		<button type="button" class="btn btn-primary btn-sm" 
-			onclick="location.href='../community/list.do?tname=step';">목록보기</button>
+			onclick="location.href='../community/list.do?tname=${ dto.tname }';">목록보기</button>
 		</div>
 	</div>
-</form> 
+</form>
 
+					</div>
 				</div>
 		<%@ include file="../include/quick.jsp" %>
 			</div>

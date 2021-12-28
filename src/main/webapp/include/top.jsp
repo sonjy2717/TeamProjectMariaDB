@@ -7,8 +7,8 @@
 		<li><a href="../member/login.jsp"><img src="../images/lnb01.gif" alt="LOGIN" /></a></li>
 		<li><a href="../member/join01.jsp"><img src="../images/lnb02.gif" alt="JOIN" /></a></li>
 		
-		<!-- 로그인후 -->
-		<!-- <li><a href="../center/sub07.jsp"><img src="../images/lnb05.gif" alt="LOG OUT" /></a></li>
+		<!-- 로그인후 --> <!-- 
+		<li><a href="../center/sub07.jsp"><img src="../images/lnb05.gif" alt="LOG OUT" /></a></li>
 		<li><a href="../center/sub07.jsp"><img src="../images/lnb06.gif" alt="MODIFY" /></a></li> -->
 		
 		<li><a href="../member/sitemap.jsp"><img src="../images/lnb03.gif" alt="SITEMAP" /></a></li>
