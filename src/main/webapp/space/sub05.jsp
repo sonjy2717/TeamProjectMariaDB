@@ -154,11 +154,10 @@ dao.close();
 						<td class="text-center"><%=dto.getVisitcount()%></td>
 						<td class="text-center">
 						<%
-					 	if(tname.equals("정보")|| tname.equals("사진")){
+					 	if(tname.equals("info")|| tname.equals("photo")){
 							if(dto.getOfile()!=null){
 							%>
-								<a href="Download.jsp?oName=<%=URLEncoder.encode(dto.getOfile(),"UTF-8")%>&sName=<%=URLEncoder.encode(dto.getSfile(),"UTF-8")%>">[다운로드]</a>
-							<img src="../Uploads/<%= dto.getSfile() %>" width="150">
+								<a href="Download.jsp?oName=<%=URLEncoder.encode(dto.getOfile(),"UTF-8")%>&sName=<%=URLEncoder.encode(dto.getSfile(),"UTF-8")%>"><i class="bi bi-pin-angle-fill"></i></a>
 							<% 	
 					 		}
 					 	}

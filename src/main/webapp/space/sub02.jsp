@@ -150,7 +150,7 @@ dto2.setTname(tname);
 		}
 		
 
-		Map<String, BoardDTO> printTitle = dao.printCalTitle("일정");
+		Map<String, BoardDTO> printTitle = dao.printCalTitle(tname);
 		String printCal = ""; 
 		 for (String key : printTitle.keySet()){
 		        System.out.println("Key:"+key+", Value:"+ printTitle.get(key).getTitle());
@@ -165,7 +165,7 @@ dto2.setTname(tname);
 		printCal = Integer.toString(year)+"-"+ Integer.toString(month) +"-" ; 
 					printCal += Integer.toString(i); 
 		*/
-		System.out.println("8월 일정 확인: "+printTitle.get("2021-08-28").getTitle());
+		// System.out.println("8월 일정 확인: "+printTitle.get("2021-08-28").getTitle()); 확인용 코드
 		for(int i = 1; i <= MyCalendar.lastDay(year, month); i++){
 			String exp="";
 			switch(MyCalendar.weekDay(year, month, i)){
@@ -267,13 +267,13 @@ dto2.setTname(tname);
             if(session.getAttribute("user_id") != null
             && session.getAttribute("user_id").toString().equals("admin")){
             %> 
-	<button type="button" class="btn btn-info"  onclick="location.href='sub02_write.jsp';" style="margin:10px">글쓰기</button>
+	<button type="button" class="btn btn-info"  onclick="location.href='adminScheduleWrite.jsp';" style="margin:10px">글쓰기</button>
 	<%
         }
 	%>
 	<!-- css넣으면 위에 월 버튼이 사라짐 -->
 	</div>
-</div>
+	</div>
   
   
 		</div>

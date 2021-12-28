@@ -57,30 +57,17 @@ try{
 			String tname= mr.getParameter("tname");
 			
 		
-			
-	
 			int iResult= dao.insertWrite(dto,tname);
 			//자원해제
 			dao.close();
 			//dto객체를 매개변수로 전달하여 레코드 insert 처리
 			if(iResult == 1){
-				//글쓰기에 성공했다면 리스트(목록) 페이지로 이동한다.
 				if(tname.equals("notice")){
-					response.sendRedirect("./sub01.jsp");
-				}
-				else if(tname.equals("free")){
-					response.sendRedirect("./sub03.jsp");
-				}
-				else if(tname.equals("photo")){
-					response.sendRedirect("./sub04.jsp");
-				}
-				else if(tname.equals("info")){
-					response.sendRedirect("./sub05.jsp");
+					response.sendRedirect("./adminNoticeList.jsp");
 				}else if(tname.equals("schedule")){
-					response.sendRedirect("./sub02.jsp");
-				}
-				else{
-					response.sendRedirect("../main/main.jsp");
+					response.sendRedirect("./adminSchedular.jsp");
+				}else{
+					response.sendRedirect("./index.jsp");
 				}
 			}else{
 				//실패한 경우에는 글쓰기 페이지로 이동한다. 즉 뒤로 이동한다.

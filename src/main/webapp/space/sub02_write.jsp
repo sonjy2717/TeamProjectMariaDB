@@ -15,6 +15,7 @@
 <title></title>
 <script>
 <%
+String tname= request.getParameter("tname");
 String idx = request.getParameter("idx");
 //DAO 객체 생성 및 DB연결
 BoardDAO dao = new BoardDAO(application);
@@ -47,7 +48,7 @@ function validateForm(form){
 }
 </script>
 </head>
- <body>
+<body>
 	<center>
 	<div id="wrap">
 		<%@ include file="../include/top.jsp" %>
@@ -67,7 +68,7 @@ function validateForm(form){
 
 
 <form name="writeFrm"enctype="multipart/form-data" method= "post" action="WriteProcess.jsp" onsubmit="return validateForm(this);">
-<input type="hidden" name="tname" value= "일정" />
+<input type="hidden" name="tname" value= "schedule" />
 <table class="table table-bordered">
 <colgroup>
 	<col width="20%"/>
