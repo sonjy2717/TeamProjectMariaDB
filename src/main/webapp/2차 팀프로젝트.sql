@@ -42,19 +42,21 @@ alter table board add calDate VARCHAR(20);
 
 #board 더미 데이터 입력
 insert into board (id, title, content, postdate, visitcount, tname)
-    values ('test1', '자유게시판', '내용1입니다', NOW(), 0, '자유');
+    values ('test1', '자유게시판', '내용1입니다', NOW(), 0, 'free');
 insert into board (id, title, content, postdate, visitcount, tname)
-    values ('test1', '직원게시판', '내용1입니다', NOW(), 0, '직원');
+    values ('test1', '직원게시판', '내용1입니다', NOW(), 0, 'step');
 insert into board (id, title, content, postdate, visitcount, tname)
-    values ('test1', '자료게시판', '내용1입니다', NOW(), 0, '자료');
+    values ('test1', '보호자게시판', '내용1입니다', NOW(), 0, 'guard');
 insert into board (id, title, content, postdate, visitcount, tname)
-    values ('test1', '자료게시판', '내용1입니다', NOW(), 0, '자료');
+    values ('test1', '자료게시판', '내용1입니다', NOW(), 0, 'file');
 insert into board (id, title, content, postdate, visitcount, tname)
-    values ('test1', '자료게시판', '내용1입니다', NOW(), 0, '자료');
+    values ('test1', '공지사항', '내용1입니다', NOW(), 0, 'notice');
 insert into board (id, title, content, postdate, visitcount, tname)
-    values ('test1', '자료게시판', '내용1입니다', NOW(), 0, '자료');
-insert into board (id, title, content, postdate, visitcount)
-    values ('test4', '제목4입니다', '내용4입니다', NOW(), 0);
+    values ('test1', '사진게시판', '내용1입니다', NOW(), 0, 'photo');
+insert into board (id, title, content, postdate, visitcount, tname)
+    values ('test4', '정보자료실', '내용4입니다', NOW(), 0, 'info');
+#insert into board (id, title, content, postdate, visitcount, tname)
+    #values ('test4', '프로그램일정', '내용4입니다', NOW(), 0, 'schedule');
     
 #member 더미 데이터 입력
 insert into member values ('테스트1', 'test1', '1111', '02-1111-1111', 
@@ -121,7 +123,7 @@ insert into field_trip
     values ('test1', '회사명1', '010-1111-1111', 'test1@naver.com',
             1, 1, '2022-01-01', 1, '기타 특이사항1');
 insert into field_trip
-    values ('test2', '회사명2', '010-2222-2222', 'test2@naver.com',
+    values ('test2', '회사명2', '010-2222-2222', 'test2@naver.csonjy2717om',
             2, 2, '2022-02-02', 2, '기타 특이사항2');
 
 #쇼핑몰 구현 테이블
@@ -150,6 +152,8 @@ CREATE TABLE basket (
     count SMALLINT,
     total INT
 );
+
+INSERT INTO basket VALUES('D01', 'test1', 58000, 2, 116000);
 
 #상품주문서 테이블
 create table orderform (
