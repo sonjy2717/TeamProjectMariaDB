@@ -122,12 +122,16 @@ function deletePost(){
 			<th class="text-center" 
 				style="vertical-align:middle;">첨부파일</th>
 			<td colspan="3">
+				<%if(tname.equals("photo") || tname.equals("info")){ %>
 				<%
 				if(dto.getOfile() != null && dto.getSfile()!=null){
 				%>
 				<a href="Download.jsp?oName=<%=URLEncoder.encode(dto.getOfile(),"UTF-8")%>&sName=<%=URLEncoder.encode(dto.getSfile(),"UTF-8")%>">[다운로드]</a>
 				<br/><br/>
 				<img src="../Uploads/<%= dto.getSfile() %>" width="100" height="100">
+				<%
+				}
+				%>
 				<% 	
 				}
 				%>
