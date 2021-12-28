@@ -2,16 +2,9 @@
 <%@page import="model1.board.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../include/global_head.jsp" %>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">   
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
 
     <meta charset="utf-8">
@@ -24,49 +17,20 @@
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
-<script>
-<%
-String tname= request.getParameter("tname");
-String idx = request.getParameter("idx");
-//DAO 객체 생성 및 DB연결
-BoardDAO dao = new BoardDAO(application);
-BoardDTO dto = dao.selectView(idx);
-dao.updateVisitCount(idx);
-
-dao.close();
-%>
-$( function() {
-	 $( "#datepicker" ).datepicker();
-	 $( "#datepicker" ).datepicker("option", "dateFormat", "yy-mm-dd");
-} );
-
-function validateForm(form){
-	if(form.datepicker.value==""){
-		alert("날짜를 입력해주세요.");
-		form.datepicker.focus();
-		return false;
-	}
-	if(form.title.value==""){
-		alert("제목을 입력해주세요.");
-		form.title.focus();
-		return false;
-	}
-	if(form.content.value==""){
-		alert("내용을 입력해주세요.");
-		form.content.focus();
-		return false;
-	}
-}
-</script>
+<style>
+	#datepicker{z-index: 99 !important};
+</style>
 </head>
-
+<link href="http://www.jqueryscript.net/css/jquerysctipttop.css"
+	rel="stylesheet" type="text/css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -160,7 +124,7 @@ function validateForm(form){
                         <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Other Pages:</h6>
-                       <a class="collapse-item" href="adminNoticeList.jsp">공지사항 admin Page</a>
+                          <a class="collapse-item" href="adminNoticeList.jsp">공지사항 admin Page</a>
                         <a class="collapse-item" href="adminSchedular.jsp">일정 관리 admin Page</a>
                     </div>
                 </div>
@@ -405,12 +369,55 @@ function validateForm(form){
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                   
-                    <br/><br/>
-                    <h3>관리자 모드 일정사항 변경</h3>
+                    <h1 class="h3 mb-4 text-gray-800">일정 관리 PAGE</h1>
 
-
- <form name="writeFrm"enctype="multipart/form-data" method= "post" action="WriteProcess.jsp" onsubmit="return validateForm(this);">
+                </div>
+                <!-- /.container-fluid -->
+<script>
+<%
+	String tname= request.getParameter("tname");
+	String idx = request.getParameter("idx");
+	//DAO 객체 생성 및 DB연결
+	BoardDAO dao = new BoardDAO(application);
+	BoardDTO dto = dao.selectView(idx);
+	dao.updateVisitCount(idx);
+	
+	dao.close();
+%>
+</script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>  <!-- jQuery 충돌문제 해결위한 삽입 문구 1 -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> <!-- jQuery 충돌문제 해결위한 삽입 문구2 -->
+<script>
+	var jb = jQuery.noConflict(); // template와 datepicker 충돌문제 해결
+	$( function() {
+		  jb( "#datepicker").datepicker({
+			  dateFormat: "yy-mm-dd"
+		  });
+	});
+	
+	function validateForm(form){
+		if(form.datepicker.value==""){
+			alert("날짜를 입력해주세요.");
+			form.datepicker.focus();
+			return false;
+		}
+		if(form.title.value==""){
+			alert("제목을 입력해주세요.");
+			form.title.focus();
+			return false;
+		}
+		if(form.content.value==""){
+			alert("내용을 입력해주세요.");
+			form.content.focus();
+			return false;
+		}
+	}
+</script>
+<center>
+	<div id="wrap">
+				
+<div>
+<form name="writeFrm"enctype="multipart/form-data" method= "post" action="WriteProcess.jsp" onsubmit="return validateForm(this);">
 <input type="hidden" name="tname" value= "schedule" />
 <table class="table table-bordered">
 <colgroup>
@@ -422,7 +429,7 @@ function validateForm(form){
 						<th class="text-center" style="vertical-align:middle;">
 						날짜:  </th>
 						<td>
-						<input type="text" name="datepicker" id="datepicker" class="form-control" />
+						<input type="text" tabindex="9999" name="datepicker" id="datepicker" class="form-control" />
 						</td>
 					</tr>
 					<tr>
@@ -453,10 +460,14 @@ function validateForm(form){
 			</div>
 	</div>
 </form> 
-                    
 
-                </div>
-                <!-- /.container-fluid -->
+				</div>
+			</div>
+		</div>
+	
+	</div>
+
+	</center>
 
             </div>
             <!-- End of Main Content -->
@@ -503,14 +514,13 @@ function validateForm(form){
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">   
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/demos/style.css">
+    
 
 </body>
 
