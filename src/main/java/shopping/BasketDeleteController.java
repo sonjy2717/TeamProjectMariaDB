@@ -12,8 +12,8 @@ import javax.servlet.http.HttpSession;
 import model2.shopping.ShoppingDAO;
 import utils.JSFunction;
 
-@WebServlet("/market/delete.do")
-public class DeleteController extends HttpServlet {
+@WebServlet("/market/basketdelete.do")
+public class BasketDeleteController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -25,7 +25,7 @@ public class DeleteController extends HttpServlet {
 		
 		if (check != null) {
 			for (int i = 0; i < check.length; i++) {
-				dao.deleteList(check[i]);
+				dao.deleteList(check[i], id);
 			}
 		}
 		

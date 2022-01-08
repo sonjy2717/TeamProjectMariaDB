@@ -47,6 +47,7 @@ MemberDTO dto = dao.getMemberInfo(user_id);
 				if (session.getAttribute("user_id") == null)
 				{
 				%>
+				<!-- 로그인 전 -->
 				<form name="loginFrm" method="post" action="../main/main.do" onsubmit="return checkFrm(this);">
 				<div class="login_box01">
 					<img src="../images/login_tit.gif" style="margin-bottom:30px;" />
@@ -71,7 +72,17 @@ MemberDTO dto = dao.getMemberInfo(user_id);
 			 		}
 			 		%>
 				
-				<p style="text-align:center; margin-bottom:50px;"><a href="../member/id_pw.jsp"><img src="../images/login_btn02.gif" alt="아이디/패스워드찾기" /></a>&nbsp;<a href="../member/join01.jsp"><img src="../images/login_btn03.gif" alt="회원가입" /></a></p>
+				<%
+				if (session.getAttribute("user_id") == null)
+				{
+				%>
+				<p style="text-align:center; margin-bottom:50px;">
+					<a href="../member/id_pw.jsp"><img src="../images/login_btn02.gif" alt="아이디/패스워드찾기" /></a>&nbsp;
+					<a href="../member/join01.jsp"><img src="../images/login_btn03.gif" alt="회원가입" /></a>
+				</p>
+				<% 
+				}
+				%>
 			</div>
 		</div>
 		<%@ include file="../include/quick.jsp" %>

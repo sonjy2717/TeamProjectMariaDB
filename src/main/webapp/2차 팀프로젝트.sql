@@ -171,6 +171,7 @@ create table orderform (
     payment SMALLINT NOT NULL
 );
 ALTER TABLE orderform MODIFY postcode INT;
+ALTER TABLE orderform MODIFY payment VARCHAR(30) NOT NULL;
 
 
 #더미 데이터

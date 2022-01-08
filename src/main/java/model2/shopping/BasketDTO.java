@@ -6,10 +6,17 @@ public class BasketDTO {
 	private String name; //상품명
     private String id; //유저아이디
     private String count; //수량
-    private String price; //금액 
+	private String price; //금액 
     private String point; //적립금
     private String total; //합계금액
+    private int flag; //구매를 했는지 안했는지 확인하는 플래그
     
+    public int getFlag() {
+    	return flag;
+    }
+    public void setFlag(int flag) {
+    	this.flag = flag;
+    }
     public String getImg() {
 		return img;
 	}

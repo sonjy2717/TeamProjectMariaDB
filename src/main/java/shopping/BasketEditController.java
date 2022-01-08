@@ -12,9 +12,11 @@ import javax.servlet.http.HttpSession;
 
 import model2.shopping.BasketDTO;
 import model2.shopping.ShoppingDAO;
+import utils.JSFunction;
 
-@WebServlet("/market/buy.do")
-public class BuyController extends HttpServlet {
+@WebServlet("/market/basketedit.do")
+public class BasketEditController extends HttpServlet {
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -23,38 +25,24 @@ public class BuyController extends HttpServlet {
 		BasketDTO dto = new BasketDTO();
 		
 		String id = (String)session.getAttribute("user_id");
-		String count = req.getParameter("count");
-		String idx = req.getParameter("idx");
-		String price = req.getParameter("price");
-		
-		if (count == null) count = "1";
+		String idx = req.getParameter("basket_idx");
+		String count = req.getParameter("basket_count");
 		
 		dto.setIdx(idx);
 		dto.setId(id);
-		dto.setPrice(price);
 		dto.setCount(count);
 		
-		int update = dao.updateCount(idx, id);
-		if (update >= 1) { 
-			System.out.println("UPDATE 성공");
-		} 
-		else {
-			System.out.println("항목 없음"); 
+		int affted = dao.editBasket(count, idx, id);
+		if (affted >= 1) {
+			System.out.println("업데이트 성공");
 		}
-		
-		if (update < 1) {
-			int insert = dao.insertBasket(dto);
-			if (insert >= 1) { 
-				System.out.println("INSERT 성공"); 
-			} 
-			else {
-				System.out.println("INSERT 실패"); 
-			}
+		else {
+			System.out.println("업데이트 실패");
 		}
 		
 		dao.close();
 		
-		resp.sendRedirect("buy.do?id=" + id);
+		resp.sendRedirect("basketedit.do?id=" + id);
 	}
 	
 	@Override
@@ -73,6 +61,6 @@ public class BuyController extends HttpServlet {
 		req.setAttribute("total", total);
 		req.setAttribute("list", list);
 		
-		req.getRequestDispatcher("/market/basket02.jsp").forward(req, resp);
+		req.getRequestDispatcher("/market/basket.jsp").forward(req, resp);
 	}
 }

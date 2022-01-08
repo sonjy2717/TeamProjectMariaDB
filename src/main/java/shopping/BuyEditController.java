@@ -12,10 +12,9 @@ import javax.servlet.http.HttpSession;
 
 import model2.shopping.BasketDTO;
 import model2.shopping.ShoppingDAO;
-import utils.JSFunction;
 
-@WebServlet("/market/edit.do")
-public class EditController extends HttpServlet {
+@WebServlet("/market/buyedit.do")
+public class BuyEditController extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -42,28 +41,25 @@ public class EditController extends HttpServlet {
 		
 		dao.close();
 		
-		resp.sendRedirect("basket.do?id=" + id);
+		resp.sendRedirect("buyedit.do?id=" + id);
 	}
 	
-//	@Override
-//	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//		
-//		ShoppingDAO dao = new ShoppingDAO();
-//		BasketDTO dto = new BasketDTO();
-//		
-//		String id = req.getParameter("id");
-//		
-//		dto.setId(id);
-//		
-//		List<BasketDTO> list = dao.showBasketList(id);
-//		
-//		int total = dao.basketTotal(id);
-//		
-//		dao.close();
-//		
-//		req.setAttribute("list", list);
-//		req.setAttribute("total", total);
-//		
-//		req.getRequestDispatcher("/market/basket.jsp").forward(req, resp);
-//	}
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		HttpSession session = req.getSession();
+		ShoppingDAO dao = new ShoppingDAO();
+		
+		String id = (String)session.getAttribute("user_id");
+		
+		List<BasketDTO> list = dao.showBasketList(id);
+		
+		int total = dao.basketTotal(id);
+		dao.close();
+		
+		req.setAttribute("total", total);
+		req.setAttribute("list", list);
+		
+		req.getRequestDispatcher("/market/basket02.jsp").forward(req, resp);
+	}
 }

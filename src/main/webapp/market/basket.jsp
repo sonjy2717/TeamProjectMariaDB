@@ -18,7 +18,7 @@ function edit(idx) {
 	}
 	
 	form.method = "post";
-	form.action = "../market/edit.do";
+	form.action = "../market/basketedit.do";
 	form.submit();
 }
 
@@ -32,7 +32,7 @@ function deleteList() {
 	}
 	
 	frm.method = "post";
-	frm.action = "../market/delete.do";
+	frm.action = "../market/basketdelete.do";
 	frm.submit();
 }
 
